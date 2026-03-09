@@ -2,6 +2,23 @@ pipeline {
     agent any
 
     stages {
+        stage('System Update') {
+            steps {
+                echo 'Updating system packages...'
+                sh 'sudo apt update'
+            }
+        }
+
+        stage('Check System Status') {
+            steps {
+                echo 'Checking uptime...'
+                sh 'uptime'
+                
+                echo 'Checking current date...'
+                sh 'date'
+            }
+        }
+
         stage('Build') {
             steps {
                 echo 'Building the project... hello 123445566'
@@ -10,7 +27,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Running tests...  so now running fine'
+                echo 'Running tests... so now running fine'
             }
         }
 
