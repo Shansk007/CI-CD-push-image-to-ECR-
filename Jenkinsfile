@@ -34,12 +34,14 @@ pipeline {
 
         stage('Trivy Scan') {
             steps {
-                echo "Scanning image with Trivy"
-                sh """
-                trivy image --severity HIGH,CRITICAL --no-progress ${IMAGE_NAME}:${IMAGE_TAG}
-                """
+                    echo "Scanning image with Trivy"
+                        sh """
+                        trivy image --severity HIGH,CRITICAL --no-progress my-app:${IMAGE_TAG}
+                        """
             }
         }
+
+        
 
         stage('Login to AWS ECR') {
             steps {
